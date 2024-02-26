@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(
                 height: 100,
               ),
-              Container(
+              SizedBox(
                 width: 240,
                 child: Container(
                     child: Image.asset('assets/icons/seesaw_main.png')),
@@ -48,9 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(
                 height: 60,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Container(
+              /*/const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: SizedBox(
                   height: 80,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   BorderRadius.all(Radius.circular(10.0)),
                               borderSide: BorderSide(
                                 width: 1,
-                                color: const Color.fromARGB(255, 177, 177, 177),
+                                color: Color.fromARGB(255, 177, 177, 177),
                               ),
                             ),
                             border: OutlineInputBorder(
@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                 ),
-              ),
+              ),*/
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: TextField(
