@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:seesaw_th/finding_password_page.dart';
+import 'package:seesaw_th/join_page.dart';
+import 'package:seesaw_th/mian_home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,7 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'seesaw',
       theme: ThemeData(
@@ -34,7 +38,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Dismiss the keyboard when tapping outside of the TextField
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
@@ -47,75 +50,377 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 SizedBox(
                   width: 240,
-                  child: Container(
-                      child: Image.asset('assets/icons/seesaw_main.png')),
+                  child: Image.asset('assets/icons/seesaw_main.png'),
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 55,
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                      Stack(
                         children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      '이메일 주소',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                           Padding(
-                            padding: EdgeInsets.all(4.0),
-                            child: Text(
-                              '이메일 주소',
-                              style: TextStyle(
-                                fontSize: 12,
+                            padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: '이메일을 입력하세요.',
+                                hintStyle: TextStyle(
+                                  fontSize: 13.5,
+                                  color: Color(0xFF9D9C9C),
+                                ),
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(10, 10, 0, 0),
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                    width: 0.2,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ],
                       ),
-                      TextField(
-                        decoration: InputDecoration(
-                          hintText: '이메일을 입력하세요.',
-                          hintStyle: const TextStyle(
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF9D9C9C),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Stack(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      '비밀번호',
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 14.0), // 수정 가능
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            borderSide: BorderSide(
-                              width: 1,
-                              color: Color(0xFFB1B1B1),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: '비밀번호를 입력하세요.',
+                                hintStyle: TextStyle(
+                                  fontSize: 13.5,
+                                  color: Color(0xFF9D9C9C),
+                                ),
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(10, 10, 0, 0),
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                    width: 0.2,
+                                  ),
+                                ),
+                              ),
+                              obscureText: true,
                             ),
                           ),
-                          border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => const FindingPass());
+                            },
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                '비밀번호 찾기',
+                                style: TextStyle(fontSize: 12),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      SizedBox(
+                        height: 42,
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Get.to(() => const MainHome());
+                          },
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            backgroundColor: const Color(0xFF524E89),
+                            /*shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  10), // 원하는 radius 값으로 조정
+                            ),*/
+                          ),
+                          child: const Text(
+                            '로그인',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 42,
+                      ),
+                      const SizedBox(
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Divider(
+                                color: Color(0xFFD9D9D9),
+                                thickness: 1.0,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              ' 또는 ',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFFD9D9D9),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              child: Divider(
+                                color: Color(0xFFD9D9D9),
+                                thickness: 1.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      SizedBox(
+                        height: 42,
+                        width: double.infinity,
+                        child: OutlinedButton(
+                          onPressed: () {},
+                          style: OutlinedButton.styleFrom(
+                            side: const BorderSide(
+                              color: Color(0xFFD9D9D9),
+                              width: 1.0,
+                            ),
+                            /*shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  10), // 원하는 radius 값으로 조정
+                            ),*/
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: 22,
+                                height: 22,
+                                child:
+                                    Image.asset('assets/icons/google_icon.png'),
+                              ),
+                              const SizedBox(
+                                width: 3,
+                              ),
+                              const Text(
+                                'Google로 시작하기',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Color(0xFF000000),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(4.0),
-                            child: Text(
-                              '비밀번호',
+                      SizedBox(
+                        height: 42,
+                        width: double.infinity,
+                        child: OutlinedButton(
+                          onPressed: () {},
+                          style: OutlinedButton.styleFrom(
+                            side: const BorderSide(
+                              color: Color(0xFFD9D9D9),
+                              width: 1.0,
+                            ),
+                            /*shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  10), // 원하는 radius 값으로 조정
+                            ),*/
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Column(
+                                children: [
+                                  const SizedBox(
+                                    height: 3,
+                                  ),
+                                  SizedBox(
+                                    width: 33,
+                                    height: 33,
+                                    child: Image.asset(
+                                        'assets/icons/apple_icon.png'),
+                                  ),
+                                ],
+                              ),
+                              const Text(
+                                'Apple로 시작하기  ',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Color(0xFF000000),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        height: 42,
+                        width: double.infinity,
+                        child: OutlinedButton(
+                          onPressed: () {
+                            Get.to(() => const JoinPage());
+                          },
+                          style: OutlinedButton.styleFrom(
+                            side: const BorderSide(
+                              color: Color(0xFFD9D9D9),
+                              width: 1.0,
+                            ),
+                            /*shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  10), // 원하는 radius 값으로 조정
+                            ),*/
+                          ),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.email,
+                                size: 19,
+                                color: Color(0xFF000000),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                '이메일로 시작하기',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Color(0xFF000000),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 72,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 6),
+                          elevation: 0,
+                          side: const BorderSide(
+                            color: Color(0xFFD9D9D9),
+                            width: 1.0,
+                          ),
+                          minimumSize: const Size(100, 35),
+                        ),
+                        child: const Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              'Korean',
                               style: TextStyle(
-                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFFD9D9D9),
+                                fontSize: 14,
                               ),
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              width: 3,
+                            ),
+                            Icon(
+                              Icons.expand_more,
+                              color: Color(0xFFD9D9D9),
+                              size: 20,
+                            ),
+                          ],
+                        ),
                       ),
-                      TextField(
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+                      /* TextField(
                         decoration: InputDecoration(
                           hintText: '비밀번호를 입력하세요.',
-                          hintStyle: const TextStyle(
+                          hintStyle: TextStyle(
                             fontSize: 14.0,
                             fontWeight: FontWeight.w500,
                             color: Color(0xFF9D9C9C),
@@ -136,152 +441,32 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                         obscureText: true, // 이 부분이 텍스트를 가리는 역할을 합니다.
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                '비밀번호 찾기',
-                                style: TextStyle(fontSize: 12),
-                              ),
+                      ),*/
+                      /* TextField(
+                        decoration: InputDecoration(
+                          hintText: '이메일을 입력하세요.',
+                          hintStyle: TextStyle(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xFF9D9C9C),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 12.0, horizontal: 14.0), // 수정 가능
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(
+                              width: 1,
+                              color: Color(0xFFB1B1B1),
                             ),
                           ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            backgroundColor:
-                                const Color.fromARGB(250, 82, 78, 137),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  10), // 원하는 radius 값으로 조정
-                            ),
-                          ),
-                          child: const Text(
-                            '로그인',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                            ),
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: OutlinedButton(
-                          onPressed: () {},
-                          style: OutlinedButton.styleFrom(
-                            side: BorderSide(
-                              color: const Color.fromARGB(
-                                  250, 82, 78, 137), // border color
-                              width: 1.5, // thickness of the border
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  10), // 원하는 radius 값으로 조정
-                            ),
-                          ),
-                          child: Text(
-                            '회원가입',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: const Color.fromARGB(
-                                  250, 82, 78, 137), // text color
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      const SizedBox(
-                        width: double.infinity,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Divider(
-                                color: Color(0xFFD9D9D9),
-                                thickness: 1.0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            backgroundColor:
-                                const Color.fromARGB(250, 82, 78, 137),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  10), // 원하는 radius 값으로 조정
-                            ),
-                          ),
-                          child: const Text(
-                            'Google로 시작하기',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 2,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            backgroundColor:
-                                const Color.fromARGB(250, 82, 78, 137),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  10), // 원하는 radius 값으로 조정
-                            ),
-                          ),
-                          child: const Text(
-                            'Apple로 시작하기',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 55,
-                      ),
-                      Padding(
+                      ),*/
+                      /*Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: SizedBox(
                           height: 42,
@@ -289,8 +474,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: OutlinedButton(
                             onPressed: () {},
                             style: OutlinedButton.styleFrom(
-                              side: BorderSide(
-                                color: const Color.fromARGB(
+                              side: const BorderSide(
+                                color: Color.fromARGB(
                                     250, 82, 78, 137), // border color
                                 width: 1.5, // thickness of the border
                               ),
@@ -299,7 +484,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     0), // 원하는 radius 값으로 조정
                               ),
                             ),
-                            child: Row(
+                            child: const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
@@ -319,19 +504,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-              /*  SizedBox(
+                      ),*/
+                /*SizedBox(
                       height: 35,
                       width: 200,
                       child: ElevatedButton(
@@ -437,8 +611,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(
                 height: 5,
               ),*/
-
-              /*  const Padding(
+              /*const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Center(
                   child: SizedBox(
@@ -475,4 +648,3 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),*/
-
